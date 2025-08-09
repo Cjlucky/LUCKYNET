@@ -38,8 +38,10 @@ const About = () => {
                     ? "/lovable-uploads/e21ae413-a090-41dd-b8fc-883a29357cde.png"
                     : member.name === "Rishav Agarwal"
                     ? "/lovable-uploads/da8d46a7-f075-46bf-9052-9c94c10b4aee.png"
+                    : member.name === "Subham Mohanty"
+                    ? "/lovable-uploads/29bba71b-6720-4f5b-bc17-02a830a63b1a.png"
                     : "/placeholder.svg"}
-                  alt={(member.name === "Saket Dubey" || member.name === "Lucky Chatterjee" || member.name === "Rishav Agarwal") ? "Team member photo" : `Team member placeholder: ${member.name}`}
+                  alt={(member.name === "Saket Dubey" || member.name === "Lucky Chatterjee" || member.name === "Rishav Agarwal" || member.name === "Subham Mohanty") ? "Team member photo" : `Team member placeholder: ${member.name}`}
                   loading="lazy"
                   className="w-full rounded-md border border-border"
                 />
