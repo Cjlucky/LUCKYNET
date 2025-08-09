@@ -32,8 +32,12 @@ const About = () => {
               </CardHeader>
               <CardContent>
                 <img
-                  src={member.name === "Saket Dubey" ? "/lovable-uploads/1a595641-c74a-4e85-9126-4a474a216b04.png" : "/placeholder.svg"}
-                  alt={member.name === "Saket Dubey" ? "Team member photo" : `Team member placeholder: ${member.name}`}
+                  src={member.name === "Saket Dubey" 
+                    ? "/lovable-uploads/1a595641-c74a-4e85-9126-4a474a216b04.png"
+                    : member.name === "Lucky Chatterjee"
+                    ? "/lovable-uploads/e21ae413-a090-41dd-b8fc-883a29357cde.png"
+                    : "/placeholder.svg"}
+                  alt={(member.name === "Saket Dubey" || member.name === "Lucky Chatterjee") ? "Team member photo" : `Team member placeholder: ${member.name}`}
                   loading="lazy"
                   className="w-full rounded-md border border-border"
                 />
