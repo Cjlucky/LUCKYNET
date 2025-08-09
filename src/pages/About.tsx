@@ -32,8 +32,8 @@ const About = () => {
               </CardHeader>
               <CardContent>
                 <img
-                  src="/placeholder.svg"
-                  alt={`Team member placeholder: ${member.name}`}
+                  src={member.name === "Saket Dubey" ? "/lovable-uploads/1fe7d141-db33-49d6-a3db-98112863719b.png" : "/placeholder.svg"}
+                  alt={member.name === "Saket Dubey" ? "Team member photo" : `Team member placeholder: ${member.name}`}
                   loading="lazy"
                   className="w-full rounded-md border border-border"
                 />
