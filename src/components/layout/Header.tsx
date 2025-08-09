@@ -13,7 +13,7 @@ const Header = () => {
         <div className="flex items-center gap-2">
           <NavLink to="/" className={getLinkClass} end>Home</NavLink>
           <NavLink to="/about" className={getLinkClass}>About</NavLink>
-          <NavLink to="/blogs" className={getLinkClass}>Blogs</NavLink>
+          <a href="https://cjlucky.blogspot.com" className={cn(linkBase, "hover:bg-accent/20 text-foreground")} target="_blank" rel="noopener noreferrer">Blogs</a>
           <NavLink to="/study" className={getLinkClass}>Study Material</NavLink>
         </div>
       </nav>
