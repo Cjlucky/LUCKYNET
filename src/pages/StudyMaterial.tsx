@@ -64,9 +64,27 @@ const StudyMaterial = () => {
     // Define download links for specific resources
     const downloadLinks: Record<string, string> = {
       "Engineering Mechanics-2024-25": "https://drive.google.com/uc?export=download&id=1ePewxsXt1QeZY04Vtai3AcBfUZpKj4Bb",
+      "Engineering Drawing-2024-25": "https://drive.google.com/uc?export=download&id=1AtkM_cQMhbqRjvJy56AZMPRyoVWqoAhM",
       "Engineering Chemistry-2024-25": "https://drive.google.com/uc?export=download&id=1As8ojKsYcMt18TxahNrGFnnRFlE3gQPc",
-      "Basic Electrical & Electronics Engineering-2024-25": "https://drive.google.com/uc?export=download&id=1aMBLxUukDXV0IpfS1tZvtf1ojir8-0Cn",
-      "Engineering Mathematics 1-2024-25": "https://drive.google.com/uc?export=download&id=14bLxs6ijMWuxSGT7VbrLHQNmPb-RgfeD"
+      "Engineering Biology-2024-25": "https://drive.google.com/uc?export=download&id=1qp25MgKqOyho0PEpucb05C6ornufn2wk",
+      "Programming for Problem Solving-2024-25": "https://drive.google.com/uc?export=download&id=1cTPoIPVtgREnwTTdvWotluo1lbfBayI7",
+      "Engineering Mathematics 2-2024-25": "https://drive.google.com/uc?export=download&id=17XkVd8FufdR4WlP1d4VvJ1Ppuhl6y1LU",
+      "Engineering Physics-2024-25": "https://drive.google.com/uc?export=download&id=1DqTDlRWrW6V6OvQZinow2-TuLPlJapFZ",
+      "Indian Knowledge System-2024-25": "https://drive.google.com/uc?export=download&id=1aOfF0ajzFecX3VkJ0EfVfIjrY3JOgmEL",
+      "Basic Electrical & Electronics Engineering-2024-25": "https://drive.google.com/uc?export=download&id=16Osbyqp8yC_ZfopyuGVZZW1gIoqyGGvX",
+      "Engineering Drawing-2023-24": "https://drive.google.com/uc?export=download&id=1le4_IoyM1fVTChFV_E0DBvxcaRUGIz5w",
+      "Engineering Mechanics-2023-24": "https://drive.google.com/uc?export=download&id=1le4_IoyM1fVTChFV_E0DBvxcaRUGIz5w",
+      "Engineering Chemistry-2023-24": "https://drive.google.com/uc?export=download&id=1zADMcKiGEvqT1w8H9eT-jK13-sktU0xh",
+      "Basic Electrical & Electronics Engineering-2023-24": "https://drive.google.com/uc?export=download&id=1aMBLxUukDXV0IpfS1tZvtf1ojir8-0Cn",
+      "Indian Knowledge System-2023-24": "https://drive.google.com/uc?export=download&id=1GIiqgyBl-mwWvb6oLsRpOAwRdc-0CuSu",
+      "Engineering Physics-2023-24": "https://drive.google.com/uc?export=download&id=1vKTYOsAkvaTGVA5SkJmp3F8cWCeIDn35",
+      "Programming for Problem Solving-2023-24": "https://drive.google.com/uc?export=download&id=1u1-O1p68Um73zZpznz8IdtfnB0dcvyn4",
+      "Engineering Mathematics 1-2023-24": "https://drive.google.com/uc?export=download&id=14bLxs6ijMWuxSGT7VbrLHQNmPb-RgfeD",
+      "Engineering Mathematics 2-2023-24": "https://drive.google.com/uc?export=download&id=1yAG_v-mAvv1GjLLKquJE-lnnYV8WZVjS",
+      "Engineering Biology-2023-24": "https://drive.google.com/uc?export=download&id=1WE0cRAKJTKSmKFlxmla7phit00iatMxS",
+      "Materials Engineering-2023-24": "https://drive.google.com/uc?export=download&id=12e-qiInKnbzpesJ7I7y2BZpWH6QypsaN",
+      "Basic Mechanical Engineering-2023-24": "https://drive.google.com/uc?export=download&id=1JOXfpxTtRmOfV9Or9x8pvO-egYKM_Fmq",
+      "Basic Materials Engineering-2023-24": "https://drive.google.com/uc?export=download&id=12e-qiInKnbzpesJ7I7y2BZpWH6QypsaN"
     };
 
     const linkKey = `${resource.title}-${academicYear}`;

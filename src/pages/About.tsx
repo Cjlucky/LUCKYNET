@@ -6,6 +6,8 @@ const team = [
   { name: "Rishav Agarwal" },
   { name: "Subham Mohanty" },
   { name: "Saket Dubey" },
+  { name: "Prajjwal Jha" },
+  { name: "LUCKY KUMAR" },
 ];
 
 const About = () => {
@@ -38,11 +40,10 @@ const About = () => {
             Together, let’s turn your first year into the foundation of something great.
           </p>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {team.map((member, index) => {
-            // Different animation delays for each card
-            const delay = index * 0.2;
-            return (
+        <div className="flex flex-col items-center w-full">
+          {/* Lucky Chatterjee's Card - Centered and Larger */}
+          <div className="w-full max-w-2xl mb-12 mx-auto">
+            {team.filter(member => member.name === "Lucky Chatterjee (ADMIN)").map((member, index) => (
               <div key={member.name} className="group relative">
                 <div 
                   className="absolute -inset-1 rounded-lg blur opacity-0 group-hover:opacity-70 transition-all duration-300 group-hover:duration-200"
@@ -50,12 +51,12 @@ const About = () => {
                     background: 'linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000)',
                     backgroundSize: '400% 400%',
                     animation: 'gradient 15s ease infinite',
-                    animationDelay: `${delay}s`,
+                    animationDelay: '0s',
                   }}
                 ></div>
                 <Card className="relative overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
-                  <CardHeader>
-                    <CardTitle className="text-base tracking-wide uppercase">
+                  <CardHeader className="text-center">
+                    <CardTitle className="text-xl font-bold tracking-wide uppercase">
                       {member.name}
                     </CardTitle>
                   </CardHeader>
@@ -67,36 +68,79 @@ const About = () => {
                           background: 'linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000)',
                           backgroundSize: '400% 400%',
                           animation: 'gradient 15s ease infinite',
-                          animationDelay: `${delay}s`,
+                          animationDelay: '0s',
                         }}
                       ></div>
                       <img
-                        src={member.name === "Saket Dubey" 
-                          ? "/lovable-uploads/1a595641-c74a-4e85-9126-4a474a216b04.png"
-                          : member.name === "Lucky Chatterjee (ADMIN)"
-                          ? "/lovable-uploads/e21ae413-a090-41dd-b8fc-883a29357cde.png"
-                          : member.name === "Rishav Agarwal"
-                          ? "/lovable-uploads/da8d46a7-f075-46bf-9052-9c94c10b4aee.png"
-                          : member.name === "Subham Mohanty"
-                          ? "/lovable-uploads/29bba71b-6720-4f5b-bc17-02a830a63b1a.png"
-                          : "/placeholder.svg"}
+                        src="/lovable-uploads/e21ae413-a090-41dd-b8fc-883a29357cde.png"
                         alt={member.name}
                         loading="lazy"
-                        className="w-full border border-border transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-96 object-cover border border-border transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
                   </CardContent>
                 </Card>
-                <style jsx global>{`
-                  @keyframes gradient {
-                    0% { background-position: 0% 50%; }
-                    50% { background-position: 100% 50%; }
-                    100% { background-position: 0% 50%; }
-                  }
-                `}</style>
               </div>
-            );
-          })}
+            ))}
+          </div>
+          
+          {/* Other Team Members - 2 rows of 2 cards */}
+          <div className="w-full max-w-4xl mx-auto">
+            <div className="grid gap-8 grid-cols-1 md:grid-cols-2">
+              {team.filter(member => member.name !== "Lucky Chatterjee (ADMIN)").map((member, index) => {
+                const delay = index * 0.2;
+                return (
+                  <div key={member.name} className="group relative">
+                    <div 
+                      className="absolute -inset-1 rounded-lg blur opacity-0 group-hover:opacity-70 transition-all duration-300 group-hover:duration-200"
+                      style={{
+                        background: 'linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000)',
+                        backgroundSize: '400% 400%',
+                        animation: 'gradient 15s ease infinite',
+                        animationDelay: `${delay}s`,
+                      }}
+                    ></div>
+                    <Card className="relative overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg h-full min-h-[380px] flex flex-col">
+                      <CardHeader className="text-center">
+                        <CardTitle className="text-sm font-medium tracking-wide uppercase">
+                          {member.name}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex-1 flex flex-col">
+                        <div className="relative overflow-hidden rounded-md flex-1 flex">
+                          <div 
+                            className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                            style={{
+                              background: 'linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000)',
+                              backgroundSize: '400% 400%',
+                              animation: 'gradient 15s ease infinite',
+                              animationDelay: `${delay}s`,
+                            }}
+                          ></div>
+                          <img
+                            alt={member.name}
+                            loading="lazy"
+                            className={`w-full h-72 object-cover border border-border transition-transform duration-500 group-hover:scale-105 ${
+                              member.name === "LUCKY KUMAR" ? 'object-[center_30%]' : 'object-top'
+                            }`}
+                            src={member.name === "LUCKY KUMAR" 
+                              ? "/lovable-uploads/Lucky%20Kumar.jpg"
+                              : member.name === "Saket Dubey" 
+                              ? "/lovable-uploads/1a595641-c74a-4e85-9126-4a474a216b04.png"
+                              : member.name === "Rishav Agarwal"
+                              ? "/lovable-uploads/da8d46a7-f075-46bf-9052-9c94c10b4aee.png"
+                              : member.name === "Subham Mohanty"
+                              ? "/lovable-uploads/29bba71b-6720-4f5b-bc17-02a830a63b1a.png"
+                              : "/lovable-uploads/prajjwal-jha.png.png"}
+                          />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
         <div className="mt-12">
           <Card>
