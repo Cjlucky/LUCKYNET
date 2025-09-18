@@ -8,6 +8,9 @@ const team = [
   { name: "Saket Dubey" },
   { name: "Prajjwal Jha" },
   { name: "LUCKY KUMAR" },
+  { name: "Priyanshu Shahdeo" },
+  { name: "Rakesh Kumar Mahato" },
+
 ];
 
 const About = () => {
@@ -121,7 +124,8 @@ const About = () => {
                             alt={member.name}
                             loading="lazy"
                             className={`w-full h-72 object-cover border border-border transition-transform duration-500 group-hover:scale-105 ${
-                              member.name === "LUCKY KUMAR" ? 'object-[center_30%]' : 'object-top'
+                              member.name === "LUCKY KUMAR" ? 'object-[center_30%]' : 
+                              member.name === "Priyanshu Shahdeo" ? 'object-center' : 'object-top'
                             }`}
                             src={member.name === "LUCKY KUMAR" 
                               ? "/lovable-uploads/Lucky%20Kumar.jpg"
@@ -131,6 +135,10 @@ const About = () => {
                               ? "/lovable-uploads/da8d46a7-f075-46bf-9052-9c94c10b4aee.png"
                               : member.name === "Subham Mohanty"
                               ? "/lovable-uploads/29bba71b-6720-4f5b-bc17-02a830a63b1a.png"
+                              : member.name === "Priyanshu Shahdeo"
+                              ? "/lovable-uploads/Priyanshu.jpg"
+                              : member.name === "Rakesh Kumar Mahato"
+                              ? "/lovable-uploads/RRR.png"
                               : "/lovable-uploads/prajjwal-jha.png.png"}
                           />
                         </div>
