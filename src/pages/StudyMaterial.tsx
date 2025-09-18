@@ -65,7 +65,8 @@ const StudyMaterial = () => {
     const downloadLinks: Record<string, string> = {
       "Engineering Mechanics-2024-25": "https://drive.google.com/uc?export=download&id=1ePewxsXt1QeZY04Vtai3AcBfUZpKj4Bb",
       "Engineering Chemistry-2024-25": "https://drive.google.com/uc?export=download&id=1As8ojKsYcMt18TxahNrGFnnRFlE3gQPc",
-      "Basic Electrical & Electronics Engineering-2024-25": "https://drive.google.com/uc?export=download&id=1aMBLxUukDXV0IpfS1tZvtf1ojir8-0Cn"
+      "Basic Electrical & Electronics Engineering-2024-25": "https://drive.google.com/uc?export=download&id=1aMBLxUukDXV0IpfS1tZvtf1ojir8-0Cn",
+      "Engineering Mathematics 1-2024-25": "https://drive.google.com/uc?export=download&id=14bLxs6ijMWuxSGT7VbrLHQNmPb-RgfeD"
     };
 
     const linkKey = `${resource.title}-${academicYear}`;

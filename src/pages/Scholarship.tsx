@@ -112,7 +112,7 @@ const Scholarship = () => {
                   "Internship opportunities at Siemens",
                   "Covers tuition fees and other allowances"
                 ],
-                applyLink: "https://www.ssp-india.co.in/scholarship/apply*"
+                applyLink: "https://www.ssp-india.co.in/scholarship/apply"
               }
             ].map((scholarship, index) => (
               <Card 

@@ -106,11 +106,12 @@ Thank you Seniors.`;
         headers: {
           'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
-          'HTTP-Referer': window.location.href,
+          // Do not manually set Referer; the browser will set it automatically
           'X-Title': 'AI Career Counsellor',
         },
         body: JSON.stringify({
-          model: 'moonshotai/kimi-dev-72b:free',
+          // Use DeepSeek free model on OpenRouter per user request
+          model: 'deepseek/deepseek-chat-v3.1:free',
           messages: [
             {
               role: 'system',
@@ -128,8 +129,17 @@ Thank you Seniors.`;
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error?.message || 'Failed to get response from AI');
+        const status = response.status;
+        const text = await response.text().catch(() => '');
+        let message = 'Failed to get response from AI';
+        try {
+          const json = JSON.parse(text);
+          message = json.error?.message || json.message || message;
+        } catch {
+          if (text) message = `${message} (status ${status}): ${text}`;
+          else message = `${message} (status ${status})`;
+        }
+        throw new Error(message);
       }
 
       const completion = await response.json();
