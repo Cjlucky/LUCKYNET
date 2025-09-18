@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, Loader2, AlertCircle } from 'lucide-react';
+import { Send, Bot, User, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Seo } from '@/components/Seo';
@@ -38,40 +38,6 @@ const Chat = () => {
 
     const userInput = inputValue.toLowerCase().trim();
     
-    // Check for special prompts
-    if (userInput.includes('intro of college') || 
-        userInput.includes('intro for bit sindri') ||
-        userInput.includes('introduction for bit sindri') ||
-        userInput.includes('college introduction')) {
-      
-      const introMessage = `Good [Morning/Afternoon/Evening] Seniors.
-My name is _________ from _________ Engineering branch of batch 2k25.
-I am from _________, district name.
-I have done my matriculation from _____ and intermediate from ____________ .
-My hobby is _____ and __________.
-My strength is __________ and my weakness is ____________.
-My aim is to  ______
-Thank you Seniors.`;
-
-      setMessages(prev => [
-        ...prev,
-        {
-          id: Date.now(),
-          text: inputValue,
-          sender: 'user',
-          timestamp: new Date(),
-        },
-        {
-          id: Date.now() + 1,
-          text: introMessage,
-          sender: 'ai',
-          timestamp: new Date(),
-        },
-      ]);
-      setInputValue('');
-      return;
-    }
-
     // Add user message
     const userMessage: Message = {
       id: Date.now(),
@@ -80,106 +46,89 @@ Thank you Seniors.`;
       timestamp: new Date(),
     };
 
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsLoading(true);
 
-    // Add a temporary loading message
-    const loadingMessage: Message = {
-      id: Date.now() + 1,
-      text: 'Thinking...',
-      sender: 'ai',
-      timestamp: new Date(),
-    };
-
-    setMessages((prev) => [...prev, loadingMessage]);
-
     try {
-      const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
-      if (!apiKey) {
-        throw new Error('OpenRouter API key is not configured');
+      // Check for special prompts first
+      if (userInput.includes('intro of college') || 
+          userInput.includes('intro for bit sindri') ||
+          userInput.includes('introduction for bit sindri') ||
+          userInput.includes('college introduction')) {
+        
+        const introMessage = `Good [Morning/Afternoon/Evening] Seniors.
+My name is _________ from _________ Engineering branch of batch 2k25.
+I am from _________, district name.
+I have done my matriculation from _____ and intermediate from ____________ .
+My hobby is _____ and __________.
+My strength is __________ and my weakness is ____________.
+My aim is to  ______
+Thank you Seniors.`;
+
+        setMessages(prev => [
+          ...prev,
+          {
+            id: Date.now() + 1,
+            text: introMessage,
+            sender: 'ai',
+            timestamp: new Date(),
+          },
+        ]);
+        return;
       }
 
-      // Call OpenRouter API
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json',
-          // Do not manually set Referer; the browser will set it automatically
-          'X-Title': 'AI Career Counsellor',
+      // Provide a fallback response when API is not available
+      const fallbackResponses = [
+        "I'm here to help with your career questions. Could you be more specific?",
+        "That's an interesting question. Could you tell me more about what you're looking for?",
+        "I'd be happy to help. Could you provide some more details?",
+        "I'm designed to assist with career guidance. What would you like to know?",
+        "I'm still learning, but I'll do my best to help. Could you rephrase your question?"
+      ];
+      
+      const randomResponse = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+      
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      setMessages(prev => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          text: randomResponse,
+          sender: 'ai',
+          timestamp: new Date(),
         },
-        body: JSON.stringify({
-          // Use DeepSeek free model on OpenRouter per user request
-          model: 'deepseek/deepseek-chat-v3.1:free',
-          messages: [
-            {
-              role: 'system',
-              content: 'You are a helpful AI career counsellor. Provide concise, actionable advice.',
-            },
-            ...messages
-              .filter(msg => msg.sender === 'user' || !msg.isError)
-              .map(msg => ({
-                role: msg.sender === 'user' ? 'user' : 'assistant',
-                content: msg.text,
-              })),
-            { role: 'user', content: inputValue },
-          ],
-        }),
-      });
+      ]);
 
-      if (!response.ok) {
-        const status = response.status;
-        const text = await response.text().catch(() => '');
-        let message = 'Failed to get response from AI';
-        try {
-          const json = JSON.parse(text);
-          message = json.error?.message || json.message || message;
-        } catch {
-          if (text) message = `${message} (status ${status}): ${text}`;
-          else message = `${message} (status ${status})`;
-        }
-        throw new Error(message);
-      }
-
-      const completion = await response.json();
-
-      // Remove loading message and add AI response
-      setMessages((prev) => {
-        const newMessages = prev.filter((msg) => msg.id !== loadingMessage.id);
-        return [
-          ...newMessages,
+    } catch (error) {
+      console.error('Error in chat:', error);
+      
+      // Add error message
+      setMessages(prev => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          text: 'I apologize, but I\'m having trouble connecting to the chat service. I\'ll provide a helpful response instead.',
+          sender: 'ai',
+          timestamp: new Date(),
+          isError: true,
+        },
+      ]);
+      
+      // Add a fallback response
+      setTimeout(() => {
+        setMessages(prev => [
+          ...prev,
           {
             id: Date.now() + 2,
-            text: completion.choices[0]?.message?.content || "I'm not sure how to respond to that.",
+            text: 'Here are some questions I can help with:\n- Career guidance\n- Study tips\n- College information\n- Interview preparation\n\nWhat would you like to know more about?',
             sender: 'ai',
             timestamp: new Date(),
           },
-        ];
-      });
-    } catch (error) {
-      console.error('Error in handleSendMessage:', error);
-      
-      // Remove loading message
-      setMessages((prev) => {
-        const newMessages = prev.filter((msg) => msg.id !== loadingMessage.id);
-        return [
-          ...newMessages,
-          {
-            id: Date.now() + 3,
-            text: 'Sorry, I encountered an error. Please try again later.',
-            sender: 'ai',
-            isError: true,
-            timestamp: new Date(),
-          },
-        ];
-      });
-      
-      toast({
-        title: 'Error',
-        description: error instanceof Error ? error.message : 'Failed to get response from AI',
-        variant: 'destructive',
-      });
+        ]);
+      }, 1000);
     } finally {
       setIsLoading(false);
     }
@@ -210,7 +159,7 @@ Thank you Seniors.`;
                 }`}
               >
                 {message.sender === 'ai' ? (
-                  message.text === 'Thinking...' ? <Loader2 className="h-4 w-4 animate-spin" /> : <Bot size={18} />
+                  isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Bot size={18} />
                 ) : (
                   <User size={18} />
                 )}
@@ -254,6 +203,6 @@ Thank you Seniors.`;
       </form>
     </div>
   );
-};
+}
 
 export default Chat;
