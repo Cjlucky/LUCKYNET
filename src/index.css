@@ -116,7 +116,21 @@ All colors MUST be HSL.
   .bg-spotlight {
     background: radial-gradient(600px circle at var(--pointer-x, 50%) var(--pointer-y, 50%), hsl(var(--accent) / 0.15), transparent 40%);
   }
+  /* Elevated card utility with hover interactions */
   .card-elev {
     box-shadow: var(--shadow-elev);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+    position: relative;
+  }
+  .card-elev:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 20px 48px -24px hsl(var(--accent) / 0.55), 0 8px 24px -12px hsl(var(--accent) / 0.35);
+    border-color: hsl(var(--accent) / 0.35);
+  }
+  .card-elev img {
+    transition: transform 0.35s ease;
+  }
+  .card-elev:hover img {
+    transform: scale(1.03);
   }
 }

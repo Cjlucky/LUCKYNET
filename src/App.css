@@ -40,3 +40,68 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Card hover effects */
+.card-elev {
+  transition: all 0.3s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.card-elev::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(100, 108, 255, 0.1) 0%, rgba(97, 218, 251, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.card-elev:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: rgba(100, 108, 255, 0.3);
+}
+
+.card-elev:hover::before {
+  opacity: 1;
+}
+
+.card-elev img {
+  transition: transform 0.5s ease-in-out;
+}
+
+.card-elev:hover img {
+  transform: scale(1.05);
+}
+
+/* Add a subtle pulse animation on hover */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(100, 108, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(100, 108, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(100, 108, 255, 0);
+  }
+}
+
+.card-elev:hover {
+  animation: pulse 1.5s infinite;
+}
+
+/* Ensure smooth transitions for all interactive elements */
+.card-elev,
+.card-elev * {
+  transition: all 0.3s ease-in-out;
+}
